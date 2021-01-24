@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  dns:
+    image: internetsystemsconsortium/bind9:9.16
+    restart: always
+    networks:
+      - dns-network
+    volumes:
+    - ./data/etc/bind:/etc/bind 
+    - ./data/var/cache/bind:/var/cache/bind
+    - ./data/var/lib/bind:/var/lib/bind
+    - ./data/var/log:/var/log
+    ports:
+    - 53:53/udp
+    - 53:53/tcp
+    - 953:953/tcp
+
+networks:
+  dns-network:
